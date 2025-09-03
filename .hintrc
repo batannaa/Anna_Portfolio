@@ -5,6 +5,14 @@
   "hints": {
     "meta-viewport": "off",
     "meta-charset-utf-8": "off",
-    "disown-opener": "off"
+    "disown-opener": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "backdrop-filter"
+        ]
+      }
+    ]
   }
 }

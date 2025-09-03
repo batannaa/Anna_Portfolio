@@ -1,328 +1,216 @@
-/* ======================== Base Styles & Theme Variables ======================== */
 :root {
-    /* Dark Theme (Default) */
-    --background-color: #121212;
-    --text-color: #e0e0e0;
-    --primary-color: #007bff;
-    --card-background: #1e1e1e;
-    --border-color: #333;
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #4f46e5;
+  --card-bg: #1e1e1e;
+  --border-color: #333;
 }
 
-body.light-theme {
-    /* Light Theme */
-    --background-color: #f0f2f5;
-    --text-color: #333333;
-    --primary-color: #007bff;
-    --card-background: #ffffff;
-    --border-color: #e0e0e0;
+body.light {
+  --bg-color: #f9f9f9;
+  --text-color: #222;
+  --primary-color: #007bff;
+  --card-bg: #ffffff;
+  --border-color: #ccc;
 }
 
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+  font-family: sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
 }
 
-/* ======================== Hero Section ======================== */
-#hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100vh;
-    padding: 2rem;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-color);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-#hero h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+.nav-left a {
+  margin: 0 12px;
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-.tagline {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
+.nav-left a:hover {
+  color: var(--primary-color);
 }
 
-.btn-cv {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+.nav-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
-.btn-cv:hover {
-    background-color: #0056b3;
+/* Theme toggle */
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-/* ======================== Navigation ======================== */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    background-color: var(--background-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    transition: background-color 0.3s;
-}
-
-nav a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 1.5rem;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: var(--primary-color);
-}
-
-/* ======================== Preloader ======================== */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--background-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease-out;
-    opacity: 1;
-}
-
-#preloader::after {
-    content: '';
-    width: 50px;
-    height: 50px;
-    border: 5px solid #ccc;
-    border-top-color: var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* ======================== Sections & General Layout ======================== */
+/* Sections */
 section {
-    padding: 4rem 2rem;
-    max-width: 960px;
-    margin: auto;
+  padding: 4rem 2rem;
+  max-width: 960px;
+  margin: auto;
+  text-align: center;
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
-/* ======================== Skills Section ======================== */
-.skill-bar {
-    background-color: var(--card-background);
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    padding: 10px;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
 }
 
-.skill-bar span {
-    position: absolute;
-    left: 10px;
-    font-weight: bold;
+.skill-icon {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.3s;
 }
 
-.bar {
-    height: 20px;
-    border-radius: 5px;
-    margin-top: 25px;
-    background-color: var(--primary-color);
+.skill-icon:hover {
+  transform: translateY(-5px);
 }
 
-/* Add your skill bar width styles here (e.g., .html, .css, .js) */
-.bar.html { width: 90%; }
-.bar.css { width: 85%; }
-.bar.js { width: 75%; }
+.skill-icon img {
+  width: 50px;
+  height: 50px;
+}
 
-/* ======================== Projects Section ======================== */
+/* Projects */
 .project-card {
-    background-color: var(--card-background);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
 }
 
-.project-card h4 {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+.project-card:hover {
+  transform: scale(1.02);
 }
 
-.project-card a {
-    margin: 0 0.5rem;
-    color: var(--primary-color);
-    text-decoration: none;
+/* Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#preloader::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 /* ======================== Contact Section ======================== */
 #contact form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 500px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: auto;
 }
 
 #contact form input,
 #contact form textarea {
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    background-color: var(--card-background);
-    color: var(--text-color);
-    border-radius: 5px;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border-radius: 5px;
 }
 
 #contact form button {
-    padding: 1rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
 #contact form button:hover {
-    background-color: #0056b3;
-}
-
-/* ======================== Footer ======================== */
-footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-
-/* ======================== Skills Section - Icons ======================== */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Создает адаптивную сетку */
-    gap: 2rem;
-    justify-items: center; /* Центрирует элементы в ячейках */
-    text-align: center;
-}
-
-.skill-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.skill-icon:hover {
-    transform: translateY(-5px); /* Анимация при наведении */
-}
-
-.skill-icon img {
-    width: 60px; /* Размер иконки */
-    height: 60px;
-}
-
-.skill-icon span {
-    font-weight: bold;
-    font-size: 1rem;
+  background-color: #0056b3;
 }
 
 /* ======================== Activities Section - Masonry Layout ======================== */
 .activities-grid {
-    column-count: 3; /* Количество колонок на больших экранах */
-    column-gap: 2rem; /* Отступ между колонками */
+  column-count: 3;
+  /* Количество колонок на больших экранах */
+  column-gap: 2rem;
+  /* Отступ между колонками */
 }
 
 .activity-card {
-    break-inside: avoid; /* Запрещает разрыв карточки между колонками */
-    margin-bottom: 2rem; /* Отступ под карточкой */
-    padding: 2rem;
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+  break-inside: avoid;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .activity-card:hover {
-    transform: translateY(-5px); /* Легкая анимация при наведении */
-}
+  transform: translateY(-5px);
 
-/* Адаптивность для разных размеров экрана */
-@media (max-width: 1024px) {
-    .activities-grid {
-        column-count: 2; /* 2 колонки на планшетах */
-    }
-}
-
-@media (max-width: 768px) {
-    .activities-grid {
-        column-count: 1; /* 1 колонка на мобильных */
-    }
 }
 
 /* ======================== Activities Section - Interactive Card ======================== */
 .interactive-card {
-    border: 2px dashed var(--primary-color);
-    text-align: center;
-    cursor: pointer;
+  border: 2px dashed var(--primary-color);
+  text-align: center;
+  cursor: pointer;
 }
 
 .interactive-card .interactive-link {
-    text-decoration: none; /* Убирает подчеркивание у ссылки */
-    color: var(--text-color); /* Сохраняет цвет текста */
-    display: flex; /* Используем flexbox для выравнивания содержимого */
-    flex-direction: column;
-    justify-content: center;
-    height: 100%; /* Занимает всю высоту карточки */
+  text-decoration: none;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .interactive-card h3 {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .contact-icon {
-    margin-top: auto; 
-    opacity: 0.5; 
-    transition: opacity 0.3s ease;
+  margin-top: auto;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
 
 .interactive-card:hover .contact-icon {
-    opacity: 1; 
-}
-.lang-switcher button {
-  margin-right: 0.5em;
-  font-size: 1.2em;
+  opacity: 1;
 }
 
 nav.navbar {
@@ -333,7 +221,7 @@ nav.navbar {
   background-color: var(--bg-color, #fff);
   position: sticky;
   top: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   z-index: 1000;
 }
 
@@ -350,41 +238,15 @@ nav.navbar {
   gap: 1.5rem;
 }
 
-.lang-switcher button {
-  background: none;
-  border: none;
-  margin: 0 2px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: transform 0.2s;
-  display: flex;
-  gap: 0.5rem; /
-}
-.lang-switcher button:hover {
-  transform: scale(1.2);
+/* ======================== Footer ======================== */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
 }
 
-
-/*#toggle-theme {
-    position: fixed; 
-    top: 1rem; /* Отступ сверху */
-   /* right: 1rem; /* Отступ справа */
-    /*padding: 0.5rem; /* Внутренний отступ */
-    /*background-color: var(--card-background); /* Цвет фона из переменных */
-    /*border: 1px solid var(--border-color); /* Граница */
-   /* border-radius: 50%; /* Делаем кнопку круглой */
-  /*  cursor: pointer; /* Меняем курсор на "указатель" */
-  /*  font-size: 1.5rem; /* Увеличиваем размер текста/эмодзи */
-    /*z-index: 1001; /* Помещаем кнопку поверх других элементов */
-    /*transition: background-color 0.3s, color 0.3s;
-} */
-
-#toggle-theme {
-    background: none;      /* Убираем фон по умолчанию */
-    border: none;          /* Убираем рамку */
-    color: inherit;        /* Наследуем цвет текста от родителя (чтобы он менялся вместе с темой) */
-    cursor: pointer;       /* Стандартный курсор для кнопок */
-    font-size: 1.5rem;     /* Увеличиваем размер иконок "луна/солнце" */
-    padding: 5px;          /* Небольшой отступ для удобства нажатия */
-    line-height: 1;        /* Убираем лишнюю высоту строки */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
